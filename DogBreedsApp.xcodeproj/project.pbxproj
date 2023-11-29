@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		BC8F22412B125B610024989E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8F22402B125B610024989E /* DetailViewController.swift */; };
+		BC8F22442B174A5E0024989E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8F22432B174A5E0024989E /* CoreDataManager.swift */; };
+		BC8F22482B175C7A0024989E /* SelectedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8F22472B175C7A0024989E /* SelectedTableViewCell.swift */; };
+		BC8F224B2B175D710024989E /* DogBreedSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8F224A2B175D710024989E /* DogBreedSelected.swift */; };
+		BC8F224F2B1769970024989E /* SelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8F224E2B1769970024989E /* SelectedViewController.swift */; };
 		BCADD6DC2B0243F2008E23F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADD6DB2B0243F2008E23F9 /* AppDelegate.swift */; };
 		BCADD6DE2B0243F2008E23F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADD6DD2B0243F2008E23F9 /* SceneDelegate.swift */; };
 		BCADD6E02B0243F2008E23F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADD6DF2B0243F2008E23F9 /* ViewController.swift */; };
@@ -21,6 +25,10 @@
 
 /* Begin PBXFileReference section */
 		BC8F22402B125B610024989E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BC8F22432B174A5E0024989E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		BC8F22472B175C7A0024989E /* SelectedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTableViewCell.swift; sourceTree = "<group>"; };
+		BC8F224A2B175D710024989E /* DogBreedSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedSelected.swift; sourceTree = "<group>"; };
+		BC8F224E2B1769970024989E /* SelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedViewController.swift; sourceTree = "<group>"; };
 		BCADD6D82B0243F2008E23F9 /* DogBreedsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogBreedsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCADD6DB2B0243F2008E23F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCADD6DD2B0243F2008E23F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC8F22422B174A3D0024989E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BC8F22432B174A5E0024989E /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		BCADD6CF2B0243F2008E23F9 = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +81,7 @@
 		BCADD6DA2B0243F2008E23F9 /* DogBreedsApp */ = {
 			isa = PBXGroup;
 			children = (
+				BC8F22422B174A3D0024989E /* CoreData */,
 				BCADD6F62B024444008E23F9 /* Model */,
 				BCADD6F32B024421008E23F9 /* AppDelegate */,
 				BCADD6F42B02442D008E23F9 /* Controller */,
@@ -92,6 +109,8 @@
 				BCADD6DF2B0243F2008E23F9 /* ViewController.swift */,
 				BCADD6FB2B025345008E23F9 /* BreedsTableViewCell.swift */,
 				BC8F22402B125B610024989E /* DetailViewController.swift */,
+				BC8F22472B175C7A0024989E /* SelectedTableViewCell.swift */,
+				BC8F224E2B1769970024989E /* SelectedViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -109,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				BCADD6F72B024457008E23F9 /* Breeds.swift */,
+				BC8F224A2B175D710024989E /* DogBreedSelected.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,7 +210,11 @@
 				BCADD6E62B0243F2008E23F9 /* DogBreedsApp.xcdatamodeld in Sources */,
 				BCADD6DC2B0243F2008E23F9 /* AppDelegate.swift in Sources */,
 				BCADD6DE2B0243F2008E23F9 /* SceneDelegate.swift in Sources */,
+				BC8F22482B175C7A0024989E /* SelectedTableViewCell.swift in Sources */,
+				BC8F224F2B1769970024989E /* SelectedViewController.swift in Sources */,
+				BC8F22442B174A5E0024989E /* CoreDataManager.swift in Sources */,
 				BC8F22412B125B610024989E /* DetailViewController.swift in Sources */,
+				BC8F224B2B175D710024989E /* DogBreedSelected.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DogBreed: Codable {
+class DogBreed: Codable {
     let id: Int
     let name: String
     let bred_for: String?
@@ -19,6 +19,7 @@ struct DogBreed: Codable {
     let image: DogBreedImage
     let weight: DogBreedMeasurement
     let height: DogBreedMeasurement
+    var isSelected: Bool = false
 
     enum CodingKeys: String, CodingKey {
             case id, name, bred_for, breed_group, life_span, temperament, origin
