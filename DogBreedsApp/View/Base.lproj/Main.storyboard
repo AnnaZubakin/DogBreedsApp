@@ -257,15 +257,26 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="other info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdk-9c-yVS">
-                                <rect key="frame" x="16" y="338" width="343" height="280"/>
+                                <rect key="frame" x="16" y="338" width="343" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="343" id="8qf-sA-eOx"/>
-                                    <constraint firstAttribute="height" constant="280" id="d51-zj-3fW"/>
+                                    <constraint firstAttribute="height" constant="150" id="d51-zj-3fW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tap here to make a note" translatesAutoresizingMaskIntoConstraints="NO" id="zsZ-3J-V7Z">
+                                <rect key="frame" x="16" y="496" width="343" height="128"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="0i7-BN-uey"/>
+                                    <constraint firstAttribute="width" constant="343" id="cBv-ze-epI"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ndj-90-DWe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -273,17 +284,21 @@
                             <constraint firstItem="MY9-EN-GsJ" firstAttribute="leading" secondItem="ndj-90-DWe" secondAttribute="leading" constant="16" id="4It-My-QmC"/>
                             <constraint firstItem="Vdk-9c-yVS" firstAttribute="leading" secondItem="ndj-90-DWe" secondAttribute="leading" constant="16" id="7rb-K9-pMs"/>
                             <constraint firstItem="VKm-9q-BvI" firstAttribute="top" secondItem="MY9-EN-GsJ" secondAttribute="bottom" constant="5" id="9qR-Hm-HSg"/>
+                            <constraint firstItem="zsZ-3J-V7Z" firstAttribute="leading" secondItem="ndj-90-DWe" secondAttribute="leading" constant="16" id="CQe-X8-8ZM"/>
                             <constraint firstItem="ndj-90-DWe" firstAttribute="trailing" secondItem="Vdk-9c-yVS" secondAttribute="trailing" constant="16" id="KNE-cb-TQB"/>
+                            <constraint firstItem="ndj-90-DWe" firstAttribute="trailing" secondItem="zsZ-3J-V7Z" secondAttribute="trailing" constant="16" id="QdE-4h-Exv"/>
                             <constraint firstItem="VKm-9q-BvI" firstAttribute="leading" secondItem="ndj-90-DWe" secondAttribute="leading" constant="16" id="U23-bQ-22P"/>
                             <constraint firstItem="MY9-EN-GsJ" firstAttribute="top" secondItem="ndj-90-DWe" secondAttribute="top" constant="26" id="W2o-Jr-aM9"/>
                             <constraint firstItem="ndj-90-DWe" firstAttribute="trailing" secondItem="MY9-EN-GsJ" secondAttribute="trailing" constant="16" id="WFR-kp-NQ8"/>
                             <constraint firstItem="ndj-90-DWe" firstAttribute="trailing" secondItem="VKm-9q-BvI" secondAttribute="trailing" constant="16" id="mqQ-SZ-LH5"/>
+                            <constraint firstItem="zsZ-3J-V7Z" firstAttribute="top" secondItem="Vdk-9c-yVS" secondAttribute="bottom" constant="8" id="rKn-h0-hqV"/>
                             <constraint firstItem="Vdk-9c-yVS" firstAttribute="top" secondItem="VKm-9q-BvI" secondAttribute="bottom" constant="5" id="ujw-bq-Wz6"/>
                             <constraint firstItem="Vdk-9c-yVS" firstAttribute="top" secondItem="VKm-9q-BvI" secondAttribute="bottom" constant="5" id="zVT-sG-bYW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yHO-fz-Xeb"/>
                     <connections>
+                        <outlet property="noteTextView" destination="zsZ-3J-V7Z" id="mB3-AF-KU7"/>
                         <outlet property="selectedImage" destination="MY9-EN-GsJ" id="Sev-Es-SwP"/>
                         <outlet property="selectedName" destination="VKm-9q-BvI" id="cpu-i8-OSF"/>
                         <outlet property="selectedOther" destination="Vdk-9c-yVS" id="YNy-Rx-Lng"/>
@@ -398,6 +413,12 @@
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="plus.circle" catalog="system" width="128" height="123"/>
         <image name="trash" catalog="system" width="117" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

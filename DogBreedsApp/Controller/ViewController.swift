@@ -101,6 +101,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let breed = dogBreeds[indexPath.row]
         cell.configure(with: breed, at: indexPath)
         
+        if breed.isInUserList() {
+                cell.addButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+            } else {
+                cell.addButton.setImage(UIImage(systemName: "plus.circle"), for: .normal)
+            }
+        
         cell.addButton.tag = indexPath.row
         cell.addButton.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
             
@@ -119,15 +125,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let selectedBreed = dogBreeds[index]
         
-        showAddToListAlert(breed: selectedBreed) { updatedBreed in
-               
-        DispatchQueue.main.async {
+        
+        // Проверяем, находится ли порода уже в списке избранных
+        if selectedBreed.isInUserList() {
+            showAlreadyInListAlert()
+        } else {
+            // Если порода не в списке, показываем алерт для добавления
+            showAddToListAlert(breed: selectedBreed) { updatedBreed in
+                
+                DispatchQueue.main.async {
                     self.dogBreeds[index] = updatedBreed
                     self.tableView.reloadData()
-            
-            let addedToListImage = updatedBreed.isSelected ? "checkmark.circle" : "plus.circle"
-                      sender.setImage(UIImage(systemName: addedToListImage), for: .normal)
                     
+                    let addedToListImage = updatedBreed.isSelected ? "checkmark.circle" : "plus.circle"
+                    sender.setImage(UIImage(systemName: addedToListImage), for: .normal)
+                    
+                }
             }
         }
     }
@@ -235,6 +248,14 @@ extension ViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    func showAlreadyInListAlert() {
+        let alert = UIAlertController(title: "Already Added", message: "This breed is already in your list", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+    }
 }
     
 
@@ -267,5 +288,20 @@ extension ViewController {
             
             return self
         }
+        
+        func isInUserList() -> Bool {
+                let context = CoreDataManager.shared.managedObjectContext
+                let fetchRequest: NSFetchRequest<SelectedBreed> = SelectedBreed.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "id == %d", self.id)
+
+                do {
+                    let count = try context.count(for: fetchRequest)
+                    return count > 0
+                } catch {
+                    print("Error checking if breed is in user list: \(error.localizedDescription)")
+                    return false
+                }
+            }
+        
     }
 
