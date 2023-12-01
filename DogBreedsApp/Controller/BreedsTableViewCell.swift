@@ -14,24 +14,33 @@ class BreedsTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     
+    var indexPath: IndexPath?
     
-    func configure(with breed: DogBreed) {
+    func configure(with breed: DogBreed, at indexPath: IndexPath) {
+        
+            self.indexPath = indexPath
+        
             nameLabel.text = breed.name
 
         let imageURLString = "https://cdn2.thedogapi.com/images/\(breed.referenceImageID).jpg"
                 if let imageURL = URL(string: imageURLString) {
                     breedImageView.loadImage(fromURL: imageURL)
             }
-        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+  //      addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        
+               addButton.tag = indexPath.row
+               addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+
+               let addedToListImage = breed.isSelected ? "checkmark.circle" : "plus.circle"
+               addButton.setImage(UIImage(systemName: addedToListImage), for: .normal)
        }
     
    @objc func addButtonTapped() {
-            // Вызывайте здесь метод, который обрабатывает нажатие на кнопку
-            // Например, можете вызвать метод addToUserList() для текущей породы
-            // или передать информацию о породе в другое место для обработки
+       guard let indexPath = indexPath else { return }
+
         }
         
-        }
+}
     
 
 

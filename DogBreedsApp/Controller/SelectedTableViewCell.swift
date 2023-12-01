@@ -12,8 +12,8 @@ class SelectedTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var selectedView: UIImageView!
-    
     @IBOutlet weak var selectedName: UILabel!
+    
     
     func configure(with selectedBreed: SelectedBreed) {
             selectedName.text = selectedBreed.name

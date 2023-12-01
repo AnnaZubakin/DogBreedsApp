@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UILargeContentViewerInteractionDelegate {
     
     
     var dogBreeds: [DogBreed] = []
@@ -16,7 +16,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var isAnimationCompleted = false
     
-    // var filteredBreeds: [DogBreed] = []
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBreed: UISearchBar!
@@ -27,6 +26,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         searchBreed.delegate = self
+        
+        setupSearchBar()
         
         DogApiManager.shared.fetchDogBreeds { (breeds, error) in
             if let error = error {
@@ -40,6 +41,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
+    
     
     
     class DogApiManager {
@@ -97,12 +99,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         let breed = dogBreeds[indexPath.row]
-        cell.configure(with: breed)
+        cell.configure(with: breed, at: indexPath)
         
         cell.addButton.tag = indexPath.row
         cell.addButton.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
             
-        
+
         return cell
     }
     
@@ -115,41 +117,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return
         }
         
-        var selectedBreed = dogBreeds[index]
-            
-            showAddToListAlert(breed: selectedBreed) { updatedBreed in
-                // Обновляем массив после завершения алерта
-                DispatchQueue.main.async {
+        let selectedBreed = dogBreeds[index]
+        
+        showAddToListAlert(breed: selectedBreed) { updatedBreed in
+               
+        DispatchQueue.main.async {
                     self.dogBreeds[index] = updatedBreed
                     self.tableView.reloadData()
+            
+            let addedToListImage = updatedBreed.isSelected ? "checkmark.circle" : "plus.circle"
+                      sender.setImage(UIImage(systemName: addedToListImage), for: .normal)
                     
-                    CoreDataManager.shared.printAllData()
-                    
-                   
-                    
-                }
             }
-        
-//        if let updatedBreed = showAddToListAlert(breed: dogBreeds[index]) {
-//            dogBreeds[index] = updatedBreed
-//            tableView.reloadData()
-//        }
-        
+        }
     }
         
-//        let selectedBreed = dogBreeds[index]
-//            showAddToListAlert(breed: selectedBreed)
-//    
-        
-//        if !selectedBreed.isSelected {
-//            selectedBreed.addToUserList()
-//            DispatchQueue.main.async {
-//                CoreDataManager.shared.printAllData()
-//            }
-//        }
-//        
-//            dogBreeds[index] = selectedBreed
-//            tableView.reloadData()
         
     
         
@@ -165,6 +147,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             }
         }
+    
+    func setupSearchBar() {
+        searchBreed.placeholder = "Tap here to find a breed"
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
             if let searchText = searchBar.text {
@@ -233,75 +219,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 }
     
 extension ViewController {
+    
     func showAddToListAlert(breed: DogBreed, completion: @escaping (DogBreed) -> Void) {
         let alert = UIAlertController(title: "Add to My List", message: "Do you want to add \(breed.name) to your list?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in
-            var updatedBreed = breed
+            let updatedBreed = breed
             updatedBreed.addToUserList()
             print(updatedBreed)
           
-            completion(updatedBreed) // Возвращаем обновленный экземпляр после сохранения
+            completion(updatedBreed)
         }))
         
         present(alert, animated: true, completion: nil)
     }
 }
     
-//    func showAddToListAlert(breed: DogBreed) -> DogBreed? {
-//
-//        var updatedBreed: DogBreed?
-//
-//        let alert = UIAlertController(title: "Add to My List", message: "Do you want to add \(breed.name) to your list?", preferredStyle: .alert)
-//
-//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-//                // Ничего не делаем, так как пользователь нажал "Cancel"
-//                self.dismiss(animated: true, completion: nil)
-//            }))
-//
-//    //    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//
-//        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in
-//                // Обновляем isSelected только при нажатии "Add"
-//                breed.addToUserList()
-//                updatedBreed = breed
-//
-//                self.dismiss(animated: true) {
-//                    if let selectedViewController = self.tabBarController?.viewControllers?[1] as? SelectedViewController {
-//                        selectedViewController.refreshTable()
-//                    }
-//                }
-//            }))
-//
-//            present(alert, animated: true, completion: nil)
-//
-//            // Возвращаем обновленный объект или nil, если пользователь нажал "Cancel"
-//            return updatedBreed
-//        }
 
-    
-    //        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    //
-    //        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
-    //
-    //            var updatedBreed = breed
-    //            updatedBreed.addToUserList()
-    //            print(updatedBreed)
-    //
-    //            self.dismiss(animated: true) {
-    //
-    //                        if let selectedViewController = self.tabBarController?.viewControllers?[1] as? SelectedViewController {
-    //                            selectedViewController.refreshTable()
-    //                        }
-    //                    }
-    //        }))
-    ////        print("Alert shown")
-    ////        present(alert, animated: true, completion: nil)
-    //    }
-    
-    
     
     extension DogBreed {
         
@@ -309,19 +245,9 @@ extension ViewController {
         
         func addToUserList() -> DogBreed {
             
-//            guard self.isSelected else {
-//                return self
-//            }
-            
             self.isSelected = true
             
             let context = CoreDataManager.shared.managedObjectContext
-            
-            //        if context == nil {
-            //                print("Error: Managed Object Context is nil")
-            //            } else {
-            //                print("Managed Object Context: \(context)")
-            //            }
             
             let selectedBreed = SelectedBreed(context: context)
             selectedBreed.id = Int64(self.id)
@@ -335,18 +261,10 @@ extension ViewController {
             selectedBreed.temperament = self.temperament
             selectedBreed.origin = self.origin
             
-            print("Data before save: \(selectedBreed)")
-            
             CoreDataManager.shared.saveContext()
+      
+            self.isSelected = true
             
-            print("Data after save: \(selectedBreed)")
-            
-            for selectedBreed in CoreDataManager.shared.fetchSelectedBreeds() {
-                    print("Selected Breed ID: \(selectedBreed.id), Name: \(selectedBreed.name)")
-                    // Обратитесь к другим свойствам по аналогии
-                }
-            
-            print("Data saved to Core Data")
             return self
         }
     }

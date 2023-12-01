@@ -34,24 +34,13 @@ class DetailViewController: UIViewController {
                     if let imageURL = URL(string: imageURLString) {
                         imageBreed.loadImage(fromURL: imageURL)
                 }
-            
-            // Do any additional setup after loading the view.
+          
             
             if let scrollView = self.view as? UIScrollView {
                    scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height + 1)
                }
         }
-        
-        
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-         }
-         */
+       
         
     }
 }
