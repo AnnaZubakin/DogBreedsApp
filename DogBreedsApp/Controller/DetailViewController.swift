@@ -14,6 +14,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var imageBreed: UIImageView!
     @IBOutlet weak var nameBreed: UILabel!
     @IBOutlet weak var otherInfo: UILabel!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,19 +30,57 @@ class DetailViewController: UIViewController {
             "Weight: \(breed.weight.metric) kg\n\n" +
             "Height: \(breed.height.metric) sm"
             
-           
+            
             
             let imageURLString = "https://cdn2.thedogapi.com/images/\(breed.referenceImageID).jpg"
-                    if let imageURL = URL(string: imageURLString) {
-                        imageBreed.loadImage(fromURL: imageURL)
-                }
-          
+            if let imageURL = URL(string: imageURLString) {
+                imageBreed.loadImage(fromURL: imageURL)
+            }
+            
             
             if let scrollView = self.view as? UIScrollView {
-                   scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height + 1)
-               }
+                scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height + 1)
+            }
         }
-       
+        
+        shareButton.target = self
+        shareButton.action = #selector(shareButtonTapped)
         
     }
-}
+       
+        @objc func shareButtonTapped() {
+            
+            guard let breed = selectedBreed else {
+                return
+            }
+            
+                let imageURLString = breed.referenceImageID
+               
+                if !imageURLString.isEmpty,
+                    let imageURL = URL(string: "https://cdn2.thedogapi.com/images/\(imageURLString).jpg") {
+                   
+                let breedDetails = """
+                    Name: \(breed.name)
+                    Group of Breeds: \(breed.breed_group ?? "")
+                    Temperament: \(breed.temperament ?? "")
+                    Bred For: \(breed.bred_for ?? "")
+                    Origin: \(breed.origin ?? "")
+                    Life Span: \(breed.life_span ?? "")
+                    Weight: \(breed.weight.metric) kg
+                    Height: \(breed.height.metric) sm
+                """
+                
+                let activityViewController = UIActivityViewController(
+                    activityItems: [breedDetails, imageURL],
+                    applicationActivities: nil
+                )
+
+                present(activityViewController, animated: true, completion: nil)
+            } else {
+               
+            }
+
+        }
+        
+    }
+

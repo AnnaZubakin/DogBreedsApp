@@ -41,27 +41,6 @@ class CoreDataManager {
         }
     }
     
- /*   func getAllObjects<T: NSManagedObject>(_ type: T.Type) -> [T]? {
-        do {
-            return try managedObjectContext.fetch(type.fetchRequest()) as? [T]
-        } catch {
-            print("Error fetching objects: \(error.localizedDescription)")
-            return nil
-        }
-    }
-    
-    func printAllData() {
-            let fetchRequest: NSFetchRequest<SelectedBreed> = SelectedBreed.fetchRequest()
-            
-            do {
-                let selectedBreeds = try managedObjectContext.fetch(fetchRequest)
-                selectedBreeds.forEach { breed in
-                    print(breed)
-                }
-            } catch {
-                print("Error fetching selected breeds: \(error.localizedDescription)")
-            }
-        } */
     
     func fetchSelectedBreeds() -> [SelectedBreed] {
         let request: NSFetchRequest<SelectedBreed> = SelectedBreed.fetchRequest()

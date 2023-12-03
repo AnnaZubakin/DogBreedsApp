@@ -72,10 +72,7 @@ class SearchViewController: UIViewController {
                 let lowercasedBreedGroup = breed.breed_group?.lowercased() ?? ""
                 let lowercasedTemperament = breed.temperament?.lowercased() ?? ""
              
-               
-               //   let weightMinCondition = Double(breed.weight.metric) ?? 0.0 >= weightMin
-                 // let weightMaxCondition = Double(breed.weight.metric) ?? Double.greatestFiniteMagnitude <= weightMax
-                  
+         
                   let breedWeight = breed.weight.metric 
                   let isWeightInRange = isWeightInRange(breedWeight: breedWeight, minWeight: String(weightMin), maxWeight: String(weightMax))
                   
@@ -129,21 +126,6 @@ class SearchViewController: UIViewController {
         return (min...max).contains(breedMinHeight) || (min...max).contains(breedMaxHeight)
     }
     
-//    func isWeightInRange(breedWeight: String, minWeight: String, maxWeight: String) -> Bool {
-//        let components = breedWeight.components(separatedBy: "-")
-//        
-//        guard components.count == 2,
-//              let breedWeightMin = components.first?.trimmingCharacters(in: .whitespacesAndNewlines),
-//              let breedWeightMax = components.last?.trimmingCharacters(in: .whitespacesAndNewlines),
-//              let min = Int(minWeight),
-//              let max = Int(maxWeight),
-//              let breedMin = Int(breedWeightMin),
-//              let breedMax = Int(breedWeightMax) else {
-//            return true // По умолчанию считаем, что вес попадает в диапазон
-//        }
-//        
-//        return breedMin >= min && breedMax <= max
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSearchResults" {

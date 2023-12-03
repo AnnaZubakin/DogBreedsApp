@@ -50,24 +50,24 @@ class DetailSelectedViewController: UIViewController {
                 noteTextView.textColor = .lightGray
                 return
             }
-
-           
+            
+            
             noteTextView.text = note.isEmpty ? "Add your notes here..." : note
             noteTextView.textColor = note.isEmpty ? .lightGray : .black
         }
         
         shareButton.target = self
         shareButton.action = #selector(shareButtonTapped)
-
+        
         
     }
     
     @objc func shareButtonTapped() {
-            guard let selectedBreed = selectedBreed else {
-                return
-            }
-
-            let breedDetails = """
+        guard let selectedBreed = selectedBreed else {
+            return
+        }
+        
+        let breedDetails = """
                 Name: \(selectedBreed.name ?? "")
                 Group of Breeds: \(selectedBreed.breed_group ?? "")
                 Temperament: \(selectedBreed.temperament ?? "")
@@ -78,15 +78,25 @@ class DetailSelectedViewController: UIViewController {
                 Height: \(selectedBreed.heightMetric ?? "") sm
                 Notes: \(selectedBreed.note ?? "")
             """
-
-            let activityViewController = UIActivityViewController(
-                activityItems: [breedDetails],
-                applicationActivities: nil
-            )
-
-            present(activityViewController, animated: true, completion: nil)
+        
+        guard let imageURLString = selectedBreed.referenceImageID,
+              let imageURL = URL(string: "https://cdn2.thedogapi.com/images/\(imageURLString).jpg") else {
+            return
         }
+          
+        
+        
+        
+        let activityViewController = UIActivityViewController(
+            activityItems: [breedDetails, imageURL],
+            applicationActivities: nil
+        )
+        
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
 }
+
 
 extension DetailSelectedViewController: UITextViewDelegate {
     
