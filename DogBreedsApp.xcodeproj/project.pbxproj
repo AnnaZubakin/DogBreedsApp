@@ -12,6 +12,10 @@
 		BC8F22482B175C7A0024989E /* SelectedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8F22472B175C7A0024989E /* SelectedTableViewCell.swift */; };
 		BC8F224F2B1769970024989E /* SelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8F224E2B1769970024989E /* SelectedViewController.swift */; };
 		BC8F22512B19EB110024989E /* DetailSelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8F22502B19EB110024989E /* DetailSelectedViewController.swift */; };
+		BC8F22532B1A3E4C0024989E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8F22522B1A3E4C0024989E /* SearchViewController.swift */; };
+		BC8F22562B1A46330024989E /* DogApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8F22552B1A46330024989E /* DogApiManager.swift */; };
+		BC8F225A2B1C92F10024989E /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8F22592B1C92F10024989E /* SearchResultTableViewCell.swift */; };
+		BC8F225C2B1C94830024989E /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8F225B2B1C94830024989E /* SearchResultsViewController.swift */; };
 		BCADD6DC2B0243F2008E23F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADD6DB2B0243F2008E23F9 /* AppDelegate.swift */; };
 		BCADD6DE2B0243F2008E23F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADD6DD2B0243F2008E23F9 /* SceneDelegate.swift */; };
 		BCADD6E02B0243F2008E23F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADD6DF2B0243F2008E23F9 /* ViewController.swift */; };
@@ -29,6 +33,10 @@
 		BC8F22472B175C7A0024989E /* SelectedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTableViewCell.swift; sourceTree = "<group>"; };
 		BC8F224E2B1769970024989E /* SelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedViewController.swift; sourceTree = "<group>"; };
 		BC8F22502B19EB110024989E /* DetailSelectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSelectedViewController.swift; sourceTree = "<group>"; };
+		BC8F22522B1A3E4C0024989E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		BC8F22552B1A46330024989E /* DogApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogApiManager.swift; sourceTree = "<group>"; };
+		BC8F22592B1C92F10024989E /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		BC8F225B2B1C94830024989E /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		BCADD6D82B0243F2008E23F9 /* DogBreedsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogBreedsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCADD6DB2B0243F2008E23F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCADD6DD2B0243F2008E23F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +70,14 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		BC8F22542B1A461C0024989E /* ApiManager */ = {
+			isa = PBXGroup;
+			children = (
+				BC8F22552B1A46330024989E /* DogApiManager.swift */,
+			);
+			path = ApiManager;
+			sourceTree = "<group>";
+		};
 		BCADD6CF2B0243F2008E23F9 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +97,7 @@
 		BCADD6DA2B0243F2008E23F9 /* DogBreedsApp */ = {
 			isa = PBXGroup;
 			children = (
+				BC8F22542B1A461C0024989E /* ApiManager */,
 				BC8F22422B174A3D0024989E /* CoreData */,
 				BCADD6F62B024444008E23F9 /* Model */,
 				BCADD6F32B024421008E23F9 /* AppDelegate */,
@@ -112,6 +129,9 @@
 				BC8F224E2B1769970024989E /* SelectedViewController.swift */,
 				BC8F22472B175C7A0024989E /* SelectedTableViewCell.swift */,
 				BC8F22502B19EB110024989E /* DetailSelectedViewController.swift */,
+				BC8F22522B1A3E4C0024989E /* SearchViewController.swift */,
+				BC8F22592B1C92F10024989E /* SearchResultTableViewCell.swift */,
+				BC8F225B2B1C94830024989E /* SearchResultsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -208,10 +228,14 @@
 				BCADD6F82B024457008E23F9 /* Breeds.swift in Sources */,
 				BCADD6E02B0243F2008E23F9 /* ViewController.swift in Sources */,
 				BCADD6E62B0243F2008E23F9 /* DogBreedsApp.xcdatamodeld in Sources */,
+				BC8F225C2B1C94830024989E /* SearchResultsViewController.swift in Sources */,
 				BCADD6DC2B0243F2008E23F9 /* AppDelegate.swift in Sources */,
 				BCADD6DE2B0243F2008E23F9 /* SceneDelegate.swift in Sources */,
+				BC8F22532B1A3E4C0024989E /* SearchViewController.swift in Sources */,
+				BC8F22562B1A46330024989E /* DogApiManager.swift in Sources */,
 				BC8F22482B175C7A0024989E /* SelectedTableViewCell.swift in Sources */,
 				BC8F22512B19EB110024989E /* DetailSelectedViewController.swift in Sources */,
+				BC8F225A2B1C92F10024989E /* SearchResultTableViewCell.swift in Sources */,
 				BC8F224F2B1769970024989E /* SelectedViewController.swift in Sources */,
 				BC8F22442B174A5E0024989E /* CoreDataManager.swift in Sources */,
 				BC8F22412B125B610024989E /* DetailViewController.swift in Sources */,

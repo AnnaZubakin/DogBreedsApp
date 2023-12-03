@@ -15,7 +15,7 @@ class DetailSelectedViewController: UIViewController {
     @IBOutlet weak var selectedName: UILabel!
     @IBOutlet weak var selectedOther: UILabel!
     @IBOutlet weak var noteTextView: UITextView!
-    
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +56,36 @@ class DetailSelectedViewController: UIViewController {
             noteTextView.textColor = note.isEmpty ? .lightGray : .black
         }
         
+        shareButton.target = self
+        shareButton.action = #selector(shareButtonTapped)
+
+        
     }
+    
+    @objc func shareButtonTapped() {
+            guard let selectedBreed = selectedBreed else {
+                return
+            }
+
+            let breedDetails = """
+                Name: \(selectedBreed.name ?? "")
+                Group of Breeds: \(selectedBreed.breed_group ?? "")
+                Temperament: \(selectedBreed.temperament ?? "")
+                Bred For: \(selectedBreed.bred_for ?? "")
+                Origin: \(selectedBreed.origin ?? "")
+                Life Span: \(selectedBreed.life_span ?? "")
+                Weight: \(selectedBreed.weightMetric ?? "") kg
+                Height: \(selectedBreed.heightMetric ?? "") sm
+                Notes: \(selectedBreed.note ?? "")
+            """
+
+            let activityViewController = UIActivityViewController(
+                activityItems: [breedDetails],
+                applicationActivities: nil
+            )
+
+            present(activityViewController, animated: true, completion: nil)
+        }
 }
 
 extension DetailSelectedViewController: UITextViewDelegate {

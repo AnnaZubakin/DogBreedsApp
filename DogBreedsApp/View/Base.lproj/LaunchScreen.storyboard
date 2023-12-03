@@ -27,7 +27,7 @@
                                 <rect key="frame" x="26" y="516" width="311" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="Ncf-JH-1cI"/>
-                                    <constraint firstAttribute="width" constant="311" id="d1N-af-pIB"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="311" id="d1N-af-pIB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="27"/>
                                 <color key="textColor" systemColor="systemCyanColor"/>
