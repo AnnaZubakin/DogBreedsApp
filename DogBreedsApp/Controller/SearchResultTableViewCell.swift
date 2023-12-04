@@ -9,8 +9,11 @@ import UIKit
 
 class SearchResultTableViewCell: UITableViewCell {
     
+    var indexPath: IndexPath?
+    
     @IBOutlet weak var imageSearched: UIImageView!
     @IBOutlet weak var nameSearched: UILabel!
+    @IBOutlet weak var addSearchedButton: UIButton!
     
     func configure(with breed: DogBreed) {
             
@@ -21,6 +24,16 @@ class SearchResultTableViewCell: UITableViewCell {
             imageSearched.loadImage(fromURL: imageURL)
             }
         
+        addSearchedButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+
+        let addedToListImage = breed.isSelected ? "checkmark.circle" : "plus.circle"
+        addSearchedButton.setImage(UIImage(systemName: addedToListImage), for: .normal)
+        
         }
+    
+    @objc func addButtonTapped() {
+        guard indexPath != nil else { return }
+
+         }
     
 }

@@ -83,12 +83,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let selectedBreed = dogBreeds[index]
         
-        
-        // Проверяем, находится ли порода уже в списке избранных
+      
         if selectedBreed.isInUserList() {
             showAlreadyInListAlert()
         } else {
-            // Если порода не в списке, показываем алерт для добавления
+            
             showAddToListAlert(breed: selectedBreed) { updatedBreed in
                 
                 DispatchQueue.main.async {

@@ -25,6 +25,7 @@
 		BCADD6EB2B0243F7008E23F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCADD6E92B0243F7008E23F9 /* LaunchScreen.storyboard */; };
 		BCADD6F82B024457008E23F9 /* Breeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADD6F72B024457008E23F9 /* Breeds.swift */; };
 		BCADD6FC2B025345008E23F9 /* BreedsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADD6FB2B025345008E23F9 /* BreedsTableViewCell.swift */; };
+		BCC8427D2B1E14D500A0D10E /* DetailSearchedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8427C2B1E14D500A0D10E /* DetailSearchedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		BCADD6ED2B0243F7008E23F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCADD6F72B024457008E23F9 /* Breeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breeds.swift; sourceTree = "<group>"; };
 		BCADD6FB2B025345008E23F9 /* BreedsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsTableViewCell.swift; sourceTree = "<group>"; };
+		BCC8427C2B1E14D500A0D10E /* DetailSearchedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				BC8F22522B1A3E4C0024989E /* SearchViewController.swift */,
 				BC8F22592B1C92F10024989E /* SearchResultTableViewCell.swift */,
 				BC8F225B2B1C94830024989E /* SearchResultsViewController.swift */,
+				BCC8427C2B1E14D500A0D10E /* DetailSearchedViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				BCADD6E62B0243F2008E23F9 /* DogBreedsApp.xcdatamodeld in Sources */,
 				BC8F225C2B1C94830024989E /* SearchResultsViewController.swift in Sources */,
 				BCADD6DC2B0243F2008E23F9 /* AppDelegate.swift in Sources */,
+				BCC8427D2B1E14D500A0D10E /* DetailSearchedViewController.swift in Sources */,
 				BCADD6DE2B0243F2008E23F9 /* SceneDelegate.swift in Sources */,
 				BC8F22532B1A3E4C0024989E /* SearchViewController.swift in Sources */,
 				BC8F22562B1A46330024989E /* DogApiManager.swift in Sources */,

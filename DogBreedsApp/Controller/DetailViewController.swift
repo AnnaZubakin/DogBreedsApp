@@ -37,6 +37,7 @@ class DetailViewController: UIViewController {
                 imageBreed.loadImage(fromURL: imageURL)
             }
             
+            updateAddButtonState(isInUserList: breed.isInUserList())
             
             if let scrollView = self.view as? UIScrollView {
                 scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height + 1)
@@ -47,6 +48,11 @@ class DetailViewController: UIViewController {
         shareButton.action = #selector(shareButtonTapped)
         
     }
+    
+    private func updateAddButtonState(isInUserList: Bool) {
+            let buttonText = isInUserList ? "In My List" : "Add to My List"
+            addButton.setTitle(buttonText, for: .normal)
+        }
        
         @objc func shareButtonTapped() {
             
@@ -82,5 +88,50 @@ class DetailViewController: UIViewController {
 
         }
         
+    @IBAction func addButtontapped(_ sender: Any) {
+        
+        guard let breed = selectedBreed else {
+                    return
+                }
+                
+                if breed.isInUserList() {
+                    showAlreadyInListAlert()
+                } else {
+                    showAddToListAlert(breed: breed) { updatedBreed in
+                        DispatchQueue.main.async {
+                           
+                            self.updateAddButtonState(isInUserList: true)
+                        }
+                    }
+                }
+        
     }
+    
+    
+}
+
+extension DetailViewController {
+    func showAddToListAlert(breed: DogBreed, completion: @escaping (DogBreed) -> Void) {
+        let alert = UIAlertController(title: "Add to My List", message: "Do you want to add \(breed.name) to your list?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in
+            let updatedBreed = breed
+            updatedBreed.addToUserList()
+            
+            completion(updatedBreed)
+        }))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showAlreadyInListAlert() {
+        let alert = UIAlertController(title: "Already Added", message: "This breed is already in your list", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+    }
+}
 

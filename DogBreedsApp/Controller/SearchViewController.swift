@@ -59,14 +59,13 @@ class SearchViewController: UIViewController {
             let heightMax = Double(heightMaxTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "") ?? Double.greatestFiniteMagnitude
 
         
-        // Проверяем, загружены ли данные
+       
         guard !dogBreeds.isEmpty else {
             print("No dog breeds loaded.")
             return
         }
         
 
-            // Фильтруем массив dogBreeds с учетом введенных параметров
               filteredBreeds = dogBreeds.filter { breed in
                 let lowercasedName = breed.name.lowercased()
                 let lowercasedBreedGroup = breed.breed_group?.lowercased() ?? ""
@@ -107,7 +106,7 @@ class SearchViewController: UIViewController {
               let breedMax = Double(components.last?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""),
               let min = Double(minWeight),
               let max = Double(maxWeight) else {
-            return true // По умолчанию считаем, что вес попадает в диапазон
+            return true 
         }
 
         return (min...max).contains(breedMin) || (min...max).contains(breedMax)

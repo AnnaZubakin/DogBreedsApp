@@ -26,7 +26,7 @@ class BreedsTableViewCell: UITableViewCell {
                 if let imageURL = URL(string: imageURLString) {
                     breedImageView.loadImage(fromURL: imageURL)
             }
-  //      addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+ 
         
                addButton.tag = indexPath.row
                addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
@@ -36,7 +36,7 @@ class BreedsTableViewCell: UITableViewCell {
        }
     
    @objc func addButtonTapped() {
-       guard let indexPath = indexPath else { return }
+       guard indexPath != nil else { return }
 
         }
         
