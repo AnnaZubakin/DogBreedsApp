@@ -24,12 +24,16 @@ class SearchResultTableViewCell: UITableViewCell {
             imageSearched.loadImage(fromURL: imageURL)
             }
         
+        //ADD BUTTON
+        
         addSearchedButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
 
         let addedToListImage = breed.isSelected ? "checkmark.circle" : "plus.circle"
         addSearchedButton.setImage(UIImage(systemName: addedToListImage), for: .normal)
         
         }
+    
+    //ADD BUTTON
     
     @objc func addButtonTapped() {
         guard indexPath != nil else { return }

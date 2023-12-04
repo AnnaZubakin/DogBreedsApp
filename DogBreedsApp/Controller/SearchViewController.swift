@@ -61,7 +61,6 @@ class SearchViewController: UIViewController {
         
        
         guard !dogBreeds.isEmpty else {
-            print("No dog breeds loaded.")
             return
         }
         
@@ -89,15 +88,14 @@ class SearchViewController: UIViewController {
         
 
         if filteredBreeds.isEmpty {
-            print("No breeds found for the specified criteria.")
+            showAlert()
         } else {
-            for breed in filteredBreeds {
-                print("Found breed: \(breed.name)")
-            }
+            performSegue(withIdentifier: "showSearchResults", sender: self)
         }
         
-        performSegue(withIdentifier: "showSearchResults", sender: self)
+   //     performSegue(withIdentifier: "showSearchResults", sender: self)
     }
+    
     
     func isWeightInRange(breedWeight: String, minWeight: String, maxWeight: String) -> Bool {
         let components = breedWeight.components(separatedBy: "-")
@@ -125,6 +123,18 @@ class SearchViewController: UIViewController {
         return (min...max).contains(breedMinHeight) || (min...max).contains(breedMaxHeight)
     }
     
+    func showAlert() {
+        let alertController = UIAlertController(
+            title: "No breeds found",
+            message: "No matching breeds found. Please adjust your search criteria and try again.",
+            preferredStyle: .alert
+        )
+
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+
+        present(alertController, animated: true, completion: nil)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSearchResults" {

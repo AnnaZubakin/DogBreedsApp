@@ -88,7 +88,9 @@ class DetailViewController: UIViewController {
 
         }
         
-    @IBAction func addButtontapped(_ sender: Any) {
+    
+    
+    @IBAction func addButtonTapped(_ sender: Any) {
         
         guard let breed = selectedBreed else {
                     return
@@ -106,6 +108,7 @@ class DetailViewController: UIViewController {
                 }
         
     }
+    
     
     
 }

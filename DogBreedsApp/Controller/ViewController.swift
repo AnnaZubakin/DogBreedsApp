@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var dogBreeds: [DogBreed] = []
     var isSearching: Bool = false
-    
+    var originalDogBreeds: [DogBreed] = []
     var isAnimationCompleted = false
     
     
@@ -35,6 +35,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } else if let breeds = breeds {
                 DispatchQueue.main.async {
                     self.dogBreeds = breeds
+                    self.originalDogBreeds = breeds
                     self.tableView.reloadData()
                     self.animateTable()
                 }
@@ -122,11 +123,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         searchBreed.placeholder = "Tap here to find a breed"
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            if let searchText = searchBar.text {
+    
+    
+
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+          //  if let searchText = searchBar.text {
                 if !searchText.isEmpty {
                     isSearching = true
-                    dogBreeds = dogBreeds.filter { breed in
+                   
+                    dogBreeds = originalDogBreeds.filter { breed in
                         return breed.name.lowercased().contains(searchText.lowercased())
                     }
                 } else {
@@ -134,26 +140,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 tableView.reloadData()
             }
-        }
+        
+    
 
         func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
             resetSearch()
             tableView.reloadData()
         }
 
-        private func resetSearch() {
-            isSearching = false
-            DogApiManager.shared.fetchDogBreeds { (breeds, error) in
-                if let error = error {
-                    print("Error fetching dog breeds: \(error.localizedDescription)")
-                } else if let breeds = breeds {
-                    DispatchQueue.main.async {
-                        self.dogBreeds = breeds
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-        }
+    
+    func resetSearch() {
+        isSearching = false
+        dogBreeds = originalDogBreeds
+        tableView.reloadData()
+    }
+
     
     
     func animateTable() {

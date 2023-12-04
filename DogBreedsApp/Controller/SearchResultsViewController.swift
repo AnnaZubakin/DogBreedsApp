@@ -15,7 +15,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     
     var searchResults: [DogBreed] = []
     var selectedSearchResult: DogBreed?
- //   var isInitialAppearance = true
+    var isInitialAppearance = true
     
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         
         searchedTableView.delegate = self
         searchedTableView.dataSource = self
- //       self.animateTable()
+        self.animateTable()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,7 +38,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
             let breed = searchResults[indexPath.row]
             cell.configure(with: breed)
             
-            
+     //        ADD BUTTON
             if breed.isInUserList() {
                     cell.addSearchedButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
                 } else {
@@ -51,6 +51,8 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
             
             return cell
         }
+    
+  //   ADD BUTTON
     
     @objc func addButtonTapped(_ sender: UIButton) {
         let index = sender.tag
@@ -93,83 +95,78 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         return 120
     }
     
+    //SEGUE
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        selectedSearchResult = searchResults[indexPath.row]
 //        performSegue(withIdentifier: "detailSearch", sender: self)
 //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      
+    //    selectedSearchResult = searchResults[indexPath.row]
+        
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             selectedSearchResult = searchResults[selectedIndexPath.row]
-            performSegue(withIdentifier: "detailSearch", sender: self)
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        print("SearchResultsViewController viewWillAppear")
-
-        searchedTableView.reloadData()
-
-    }
-    
-        override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
-            print("SearchResultsViewController viewDidAppear")
+          
+            if let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailSearchedViewController") as? DetailSearchedViewController {
+                       detailVC.searchedBreed = selectedSearchResult
+                       navigationController?.pushViewController(detailVC, animated: true)
+                   }
             
+  //          performSegue(withIdentifier: "detailSearch", sender: self)
         }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//           super.viewWillAppear(animated)
-//           searchedTableView.reloadData() 
-//        
-//           if isInitialAppearance {
-//                    self.animateTable()
-//                    isInitialAppearance = false
-//            }
-//        
-// //          self.animateTable()
-//       }
-    
-
-
+    }
     
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
-//        
-//        if isMovingFromParent {
-//            searchedTableView.reloadData()
-//        } else {
-//            if isInitialAppearance {
-//                self.animateTable()
-//                isInitialAppearance = false
-//            }
-//        }
+//        searchedTableView.reloadData()
+//
 //    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detailSearch", let detailVC = segue.destination as? DetailSearchedViewController {
-            detailVC.searchedBreed = selectedSearchResult
+        override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+          
+        }
+    
+    // WITH ANIMATION
+    
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+           searchedTableView.reloadData() 
+        
+           if isInitialAppearance {
+                    self.animateTable()
+                    isInitialAppearance = false
+            }
+        
+ //          self.animateTable()
+       }
+    
+
+    
+    
+    //ANIMATION
+    
+    func animateTable() {
+        searchedTableView.reloadData()
+
+        let cells = searchedTableView.visibleCells
+
+        for (index, cell) in cells.enumerated() {
+            cell.transform = CGAffineTransform(translationX: 0, y: 300)
+            UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                cell.transform = CGAffineTransform(translationX: 0, y: 0)
+            }, completion: nil)
         }
     }
     
-//    func animateTable() {
-//        searchedTableView.reloadData()
-//
-//        let cells = searchedTableView.visibleCells
-//
-//        for (index, cell) in cells.enumerated() {
-//            cell.transform = CGAffineTransform(translationX: 0, y: 300)
-//            UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-//                cell.transform = CGAffineTransform(translationX: 0, y: 0)
-//            }, completion: nil)
-//        }
-//    }
-    
 }
 
+
+//ADD BUTTON
+
 extension SearchResultsViewController {
+    
     func showAddToListAlert(breed: DogBreed, completion: @escaping (DogBreed) -> Void) {
            let alert = UIAlertController(title: "Add to My List", message: "Do you want to add \(breed.name) to your list?", preferredStyle: .alert)
 

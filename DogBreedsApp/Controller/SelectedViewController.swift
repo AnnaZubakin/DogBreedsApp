@@ -170,23 +170,27 @@ class SelectedViewController: UIViewController, UITableViewDelegate, UITableView
        searchSelectedBreed.placeholder = "Tap here to find a breed"
       }
     
+   
+
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let searchText = searchBar.text {
-            if !searchText.isEmpty {
-                isSelectedSearching = true
-                fetchedResultsController.fetchRequest.predicate = NSPredicate(format: "name CONTAINS[c] %@", searchText)
-            } else {
-                resetSearch()
-            }
-            do {
-                try fetchedResultsController.performFetch()
-            } catch {
-                print("Error performing fetch: \(error.localizedDescription)")
-            }
-            selectedTableView.reloadData()
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if !searchText.isEmpty {
+            isSelectedSearching = true
+            fetchedResultsController.fetchRequest.predicate = NSPredicate(format: "name CONTAINS[c] %@", searchText)
+        } else {
+            resetSearch()
         }
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print("Error performing fetch: \(error.localizedDescription)")
+        }
+        
+        selectedTableView.reloadData()
     }
+    
+
 
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
