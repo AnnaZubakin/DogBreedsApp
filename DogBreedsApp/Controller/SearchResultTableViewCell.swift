@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SearchResultTableViewCell: UITableViewCell {
     
@@ -21,7 +22,8 @@ class SearchResultTableViewCell: UITableViewCell {
         
             let imageURLString = "https://cdn2.thedogapi.com/images/\(breed.referenceImageID ).jpg"
             if let imageURL = URL(string: imageURLString) {
-            imageSearched.loadImage(fromURL: imageURL)
+     //       imageSearched.loadImage(fromURL: imageURL)
+            imageSearched.sd_setImage(with: imageURL, completed: nil)
             }
         
         //ADD BUTTON
@@ -40,4 +42,10 @@ class SearchResultTableViewCell: UITableViewCell {
 
          }
     
+}
+
+extension UIImageView {
+    func loadImage(fromURL url: URL) {
+        self.sd_setImage(with: url, completed: nil)
+    }
 }

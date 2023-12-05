@@ -26,6 +26,8 @@
 		BCADD6F82B024457008E23F9 /* Breeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADD6F72B024457008E23F9 /* Breeds.swift */; };
 		BCADD6FC2B025345008E23F9 /* BreedsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADD6FB2B025345008E23F9 /* BreedsTableViewCell.swift */; };
 		BCC8427D2B1E14D500A0D10E /* DetailSearchedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC8427C2B1E14D500A0D10E /* DetailSearchedViewController.swift */; };
+		BCC842802B1F926200A0D10E /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BCC8427F2B1F926200A0D10E /* SDWebImage */; };
+		BCC842822B1F926200A0D10E /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BCC842812B1F926200A0D10E /* SDWebImageMapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCC842822B1F926200A0D10E /* SDWebImageMapKit in Frameworks */,
+				BCC842802B1F926200A0D10E /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +176,10 @@
 			dependencies = (
 			);
 			name = DogBreedsApp;
+			packageProductDependencies = (
+				BCC8427F2B1F926200A0D10E /* SDWebImage */,
+				BCC842812B1F926200A0D10E /* SDWebImageMapKit */,
+			);
 			productName = DogBreedsApp;
 			productReference = BCADD6D82B0243F2008E23F9 /* DogBreedsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -200,6 +208,9 @@
 				Base,
 			);
 			mainGroup = BCADD6CF2B0243F2008E23F9;
+			packageReferences = (
+				BCC8427E2B1F926200A0D10E /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = BCADD6D92B0243F2008E23F9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -467,6 +478,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BCC8427E2B1F926200A0D10E /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.18.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BCC8427F2B1F926200A0D10E /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCC8427E2B1F926200A0D10E /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		BCC842812B1F926200A0D10E /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCC8427E2B1F926200A0D10E /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		BCADD6E42B0243F2008E23F9 /* DogBreedsApp.xcdatamodeld */ = {

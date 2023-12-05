@@ -43,6 +43,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dogBreeds.count
@@ -75,8 +80,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @objc func addButtonTapped(_ sender: UIButton) {
         let index = sender.tag
-        
-        print("addButtonTapped for index: \(index)")
         
         guard index < dogBreeds.count else {
             return

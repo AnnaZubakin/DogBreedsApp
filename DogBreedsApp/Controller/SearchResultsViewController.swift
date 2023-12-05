@@ -134,10 +134,10 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
            super.viewWillAppear(animated)
            searchedTableView.reloadData() 
         
-           if isInitialAppearance {
-                    self.animateTable()
-                    isInitialAppearance = false
-            }
+//           if isInitialAppearance {
+//                    self.animateTable()
+//                    isInitialAppearance = false
+//            }
         
  //          self.animateTable()
        }
