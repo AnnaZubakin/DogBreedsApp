@@ -7,6 +7,7 @@
 
 
 import UIKit
+import SDWebImage
 
 class SelectedTableViewCell: UITableViewCell {
     
@@ -20,7 +21,8 @@ class SelectedTableViewCell: UITableViewCell {
 
         let imageURLString = "https://cdn2.thedogapi.com/images/\(selectedBreed.referenceImageID ?? "").jpg"
             if let imageURL = URL(string: imageURLString) {
-                selectedView.loadImage(fromURL: imageURL)
+       //         selectedView.loadImage(fromURL: imageURL)
+                selectedView.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "dogs-avatar.jpg"))
             }
         }
     

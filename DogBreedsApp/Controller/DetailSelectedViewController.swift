@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class DetailSelectedViewController: UIViewController {
     
@@ -37,7 +38,8 @@ class DetailSelectedViewController: UIViewController {
             "Height: \(selectedBreed.heightMetric ?? "") sm"
             
             if let imageURLString = selectedBreed.referenceImageID, let imageURL = URL(string: "https://cdn2.thedogapi.com/images/\(imageURLString).jpg") {
-                selectedImage.loadImage(fromURL: imageURL)
+       //         selectedImage.loadImage(fromURL: imageURL)
+                selectedImage.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "dogs-avatar.jpg"))
             }
             
             

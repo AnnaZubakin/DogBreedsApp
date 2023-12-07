@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class DetailSearchedViewController: UIViewController {
 
@@ -36,7 +37,8 @@ class DetailSearchedViewController: UIViewController {
             
             let imageURLString = "https://cdn2.thedogapi.com/images/\(breed.referenceImageID).jpg"
             if let imageURL = URL(string: imageURLString) {
-                imageSearched.loadImage(fromURL: imageURL)
+     //           imageSearched.loadImage(fromURL: imageURL)
+                imageSearched.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "dogs-avatar.jpg"))
             }
             
             updateAddButtonState(isInUserList: breed.isInUserList())

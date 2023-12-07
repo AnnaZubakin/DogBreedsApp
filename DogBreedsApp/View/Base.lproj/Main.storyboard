@@ -29,8 +29,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-mE-WDn">
-                                                    <rect key="frame" x="16" y="0.0" width="160" height="110"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-mE-WDn">
+                                                    <rect key="frame" x="16" y="-0.5" width="160" height="111"/>
+                                                    <color key="tintColor" red="0.16877971880000001" green="0.077705416799999996" blue="0.041532348230000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="110" id="UcC-gI-FaD"/>
                                                         <constraint firstAttribute="width" constant="160" id="v92-Lh-Ce1"/>

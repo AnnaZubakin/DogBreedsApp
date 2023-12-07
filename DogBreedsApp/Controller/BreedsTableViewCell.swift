@@ -24,11 +24,13 @@ class BreedsTableViewCell: UITableViewCell {
             nameLabel.text = breed.name
 
         let imageURLString = "https://cdn2.thedogapi.com/images/\(breed.referenceImageID).jpg"
-                if let imageURL = URL(string: imageURLString) {
-    //                breedImageView.loadImage(fromURL: imageURL)
-                    breedImageView.sd_setImage(with: imageURL, completed: nil)
-            }
- 
+        if let imageURL = URL(string: imageURLString) {
+            
+          //  breedImageView.sd_setImage(with: imageURL, completed: nil)
+            breedImageView.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "dogs-avatar.jpg"))
+            
+        }
+            
         
                addButton.tag = indexPath.row
                addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
@@ -43,22 +45,4 @@ class BreedsTableViewCell: UITableViewCell {
         }
         
 }
-    
-
-
-//extension UIImageView {
-//    func loadImage(fromURL url: URL, completion: (() -> Void)? = nil) {
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            if let error = error {
-//                print("Error loading image: \(error.localizedDescription)")
-//            } else if let data = data, let image = UIImage(data: data) {
-//                DispatchQueue.main.async {
-//                    self.image = image
-//                    completion?()
-//                }
-//            }
-//        }.resume()
-//    }
-//}
-
-
+   
